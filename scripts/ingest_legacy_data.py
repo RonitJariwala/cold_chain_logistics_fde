@@ -56,7 +56,9 @@ connection_string = (
 
 params = urllib.parse.quote_plus(connection_string)
 
-engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
+engine = create_engine(
+    f"mssql+pymssql://{db_user}:{urllib.parse.quote_plus(db_password)}@{db_host}:{db_port}/master"
+)
 
 # 4. Ingest data into the messy table name
 table_name = 'TBL_SC_FLEET_HIST_RAW'
